@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddslspemgxl12"]
+
+[ext_resource type="Script" path="res://UI/scipts/Score.gd" id="1_4cruf"]
+[ext_resource type="FontFile" uid="uid://b3cjjhimar3p5" path="res://Flappy Bird Assets/fonts/flappyfont.TTF" id="2_5fuhh"]
+
+[sub_resource type="Theme" id="Theme_ema4k"]
+default_font = ExtResource("2_5fuhh")
+default_font_size = 35
+
+[node name="Score" type="CanvasLayer"]
+visible = false
+follow_viewport_enabled = true
+script = ExtResource("1_4cruf")
+
+[node name="Score" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 56.0
+offset_top = -104.0
+offset_right = 336.0
+offset_bottom = -64.0
+theme = SubResource("Theme_ema4k")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "Score"
+metadata/_edit_use_anchors_ = true

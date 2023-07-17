@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://baywp10bat6eu"]
+
+[ext_resource type="PackedScene" uid="uid://noy0m1na57ob" path="res://player/player.tscn" id="1_1wegw"]
+[ext_resource type="Script" path="res://DeathArea.gd" id="2_y04pm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lef7f"]
+size = Vector2(1153, 9)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_1wegw")]
+unique_name_in_owner = true
+position = Vector2(514, 308)
+
+[node name="TopArea" type="StaticBody2D" parent="."]
+position = Vector2(578, 10)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_lef7f")
+
+[node name="BottomArea2" type="Area2D" parent="."]
+position = Vector2(576, 648)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_y04pm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea2"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_lef7f")
+
+[connection signal="body_entered" from="BottomArea2" to="BottomArea2" method="_on_body_entered"]

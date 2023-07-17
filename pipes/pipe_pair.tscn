@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsw1fy3p7ltt3"]
+
+[ext_resource type="Texture2D" uid="uid://dnl6gp1m2oseb" path="res://Flappy Bird Assets/Tileset/Style 1/PipeStyle1.png" id="1_f5fa7"]
+[ext_resource type="Script" path="res://pipes/scripts/pipe_pair.gd" id="1_gfche"]
+[ext_resource type="AudioStream" uid="uid://dnxu4la8kgadd" path="res://Flappy Bird Assets/audio/point.wav" id="3_krdsv"]
+[ext_resource type="AudioStream" uid="uid://dqm3lu6wdk3q4" path="res://Flappy Bird Assets/audio/hit.wav" id="4_bm8ud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xupw"]
+size = Vector2(62, 699)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gc17"]
+size = Vector2(59, 395.111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjo5f"]
+size = Vector2(25.5, 394.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37tl1"]
+size = Vector2(64, 1395)
+
+[node name="PipePair" type="Node2D"]
+position = Vector2(60, 0)
+script = ExtResource("1_gfche")
+
+[node name="TopPipe" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPipe"]
+texture_filter = 1
+position = Vector2(-2.19999, -193.06)
+scale = Vector2(2.0125, 8.7735)
+texture = ExtResource("1_f5fa7")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
+position = Vector2(-3, -189.5)
+shape = SubResource("RectangleShape2D_0xupw")
+
+[node name="BottomPipe" type="Area2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1, 1.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPipe"]
+texture_filter = 1
+position = Vector2(0, 484.167)
+scale = Vector2(1.9, 4.97917)
+texture = ExtResource("1_f5fa7")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
+position = Vector2(-0.5, 483.556)
+shape = SubResource("RectangleShape2D_5gc17")
+
+[node name="EarnPoint" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EarnPoint"]
+position = Vector2(50.25, 336)
+shape = SubResource("RectangleShape2D_sjo5f")
+
+[node name="Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+position = Vector2(-2, 158.5)
+shape = SubResource("RectangleShape2D_37tl1")
+
+[node name="EarnPointSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_krdsv")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bm8ud")
+
+[connection signal="body_entered" from="TopPipe" to="." method="_on_top_pipe_body_entered"]
+[connection signal="body_entered" from="BottomPipe" to="." method="_on_bottom_pipe_body_entered"]
+[connection signal="body_entered" from="EarnPoint" to="." method="_on_earn_point_body_entered"]
+[connection signal="area_entered" from="Detect" to="." method="_on_detect_area_entered"]

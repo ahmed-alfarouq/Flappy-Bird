@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://noy0m1na57ob"]
+
+[ext_resource type="Texture2D" uid="uid://gialn45iji3d" path="res://Flappy Bird Assets/Player/bird1.png" id="1_2f7pb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jopei"]
+radius = 6.0
+height = 12.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2f7pb")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_jopei")
